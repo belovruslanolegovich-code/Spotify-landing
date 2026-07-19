@@ -1,25 +1,32 @@
-"use client";
-
 import { useEffect } from "react";
 
 const META_PIXEL_ID = "YOUR_META_PIXEL_ID";
-const SPOTIFY_URL = "https://open.spotify.com/playlist/7fsg3M9SrKGcuVp4uwmfNX?si=23c26d2aba7543ae";
+const SPOTIFY_URL =
+  "https://open.spotify.com/playlist/7fsg3M9SrKGcuVp4uwmfNX?si=23c26d2aba7543ae";
 
 declare global {
   interface Window {
-    fbq?: (...args: unknown[]) => void;
+    fbq?: MetaPixelFunction;
     _fbq?: unknown;
   }
+}
+
+interface MetaPixelFunction {
+  (...args: unknown[]): void;
+  queue: unknown[][];
+  push: MetaPixelFunction;
+  loaded: boolean;
+  version: string;
 }
 
 function initialiseMetaPixel() {
   if (!META_PIXEL_ID || META_PIXEL_ID === "YOUR_META_PIXEL_ID" || window.fbq) return;
 
   const fbq = function (...args: unknown[]) {
-    (fbq as unknown as { queue: unknown[][] }).queue.push(args);
-  } as typeof window.fbq;
+    fbq.queue.push(args);
+  } as MetaPixelFunction;
 
-  Object.assign(fbq as object, {
+  Object.assign(fbq, {
     push: fbq,
     loaded: true,
     version: "2.0",
@@ -34,15 +41,15 @@ function initialiseMetaPixel() {
   script.src = "https://connect.facebook.net/en_US/fbevents.js";
   document.head.appendChild(script);
 
-  window.fbq("init", META_PIXEL_ID);
-  window.fbq("track", "PageView");
-  window.fbq("track", "ViewContent", {
+  fbq("init", META_PIXEL_ID);
+  fbq("track", "PageView");
+  fbq("track", "ViewContent", {
     content_name: "Your Love Was A Light",
     content_category: "Music",
   });
 }
 
-export default function Home() {
+export default function App() {
   useEffect(() => {
     initialiseMetaPixel();
   }, []);
