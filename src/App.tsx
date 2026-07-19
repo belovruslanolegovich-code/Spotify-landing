@@ -1,5 +1,3 @@
-import { type MouseEvent } from "react";
-
 const SPOTIFY_URL =
   "https://open.spotify.com/playlist/7fsg3M9SrKGcuVp4uwmfNX?si=23c26d2aba7543ae";
 
@@ -10,16 +8,11 @@ declare global {
 }
 
 export default function App() {
-  const openSpotify = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
+  const openSpotify = () => {
     window.fbq?.("track", "Lead", {
       content_name: "Spotify Play",
       destination: "Spotify",
     });
-
-    window.setTimeout(() => {
-      window.location.href = SPOTIFY_URL;
-    }, window.fbq ? 180 : 0);
   };
 
   return (
@@ -39,6 +32,8 @@ export default function App() {
             className="service-card"
             href={SPOTIFY_URL}
             onClick={openSpotify}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Слушать Your Love Was A Light в Spotify"
           >
             <div className="spotify-brand" aria-label="Spotify">
