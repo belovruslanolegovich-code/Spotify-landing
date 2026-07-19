@@ -75,11 +75,7 @@ export default function Home() {
 
           <div className="service-card">
             <div className="spotify-brand" aria-label="Spotify">
-              <span className="spotify-icon" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
+              <span className="spotify-icon" aria-hidden="true" />
               <span>Spotify</span>
             </div>
             <button type="button" onClick={openSpotify} aria-label="Слушать mtsvane в Spotify">
