@@ -13,6 +13,7 @@ declare global {
 
 interface MetaPixelFunction {
   (...args: unknown[]): void;
+  callMethod?: (...args: unknown[]) => void;
   queue: unknown[][];
   push: MetaPixelFunction;
   loaded: boolean;
@@ -23,7 +24,11 @@ function initialiseMetaPixel() {
   if (window.fbq) return;
 
   const fbq = function (...args: unknown[]) {
-    fbq.queue.push(args);
+    if (fbq.callMethod) {
+      fbq.callMethod(...args);
+    } else {
+      fbq.queue.push(args);
+    }
   } as MetaPixelFunction;
 
   Object.assign(fbq, {
