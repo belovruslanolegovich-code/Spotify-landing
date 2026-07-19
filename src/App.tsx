@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, type MouseEvent } from "react";
 
 const META_PIXEL_ID = "455232113193774";
 const SPOTIFY_URL =
@@ -43,10 +43,6 @@ function initialiseMetaPixel() {
 
   fbq("init", META_PIXEL_ID);
   fbq("track", "PageView");
-  fbq("track", "ViewContent", {
-    content_name: "Your Love Was A Light",
-    content_category: "Music",
-  });
 }
 
 export default function App() {
@@ -54,13 +50,12 @@ export default function App() {
     initialiseMetaPixel();
   }, []);
 
-  const openSpotify = () => {
-    window.fbq?.("trackCustom", "SpotifyClick", {
-      content_name: "Your Love Was A Light",
-      artist: "fedor pate",
+  const openSpotify = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.fbq?.("track", "Lead", {
+      content_name: "Spotify Play",
       destination: "Spotify",
     });
-    window.fbq?.("track", "Lead", { content_name: "Spotify Play" });
 
     window.setTimeout(() => {
       window.location.href = SPOTIFY_URL;
@@ -80,15 +75,18 @@ export default function App() {
             <p>fedor pate</p>
           </header>
 
-          <div className="service-card">
+          <a
+            className="service-card"
+            href={SPOTIFY_URL}
+            onClick={openSpotify}
+            aria-label="Слушать Your Love Was A Light в Spotify"
+          >
             <div className="spotify-brand" aria-label="Spotify">
               <span className="spotify-icon" aria-hidden="true" />
               <span>Spotify</span>
             </div>
-            <button type="button" onClick={openSpotify} aria-label="Слушать Your Love Was A Light в Spotify">
-              Play
-            </button>
-          </div>
+            <span className="play-button" aria-hidden="true">Play</span>
+          </a>
         </div>
 
         <footer>

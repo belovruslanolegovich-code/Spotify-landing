@@ -83,17 +83,24 @@ button, a { font: inherit; }
   padding: 14px 18px;
   border-radius: 22px;
   overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 7px 23px rgba(0, 0, 0, .15);
+  transition: box-shadow 160ms ease, transform 160ms ease;
 }
+
+.service-card:hover { box-shadow: 0 9px 28px rgba(0, 0, 0, .19); }
+.service-card:active { transform: scale(.995); }
+.service-card:focus-visible { outline: 3px solid rgba(30, 215, 96, .45); outline-offset: 4px; }
 
 .spotify-brand { min-width: 0; display: flex; align-items: center; gap: 10px; color: var(--spotify); font-size: clamp(22px, 1.7vw, 30px); font-weight: 700; line-height: 1; letter-spacing: -.015em; }
 .spotify-brand > span:last-child { display: block; line-height: 1; transform: translateY(-1px); }
 .spotify-icon { width: 45px; height: 45px; flex: 0 0 45px; border-radius: 50%; background: url("/spotify-icon.png") center / 200% 200% no-repeat; }
 
-.service-card button { width: 100%; max-width: 110px; min-width: 0; min-height: 48px; justify-self: end; padding: 8px 18px; border: 2px solid #bdbdbd; border-radius: 11px; background: #fff; color: #0b0b0b; cursor: pointer; font-size: 22px; font-weight: 700; transition: background 160ms ease, border-color 160ms ease, transform 160ms ease; }
-.service-card button:hover { border-color: var(--spotify); background: #f3fff7; }
-.service-card button:active { transform: scale(.98); }
-.service-card button:focus-visible, footer a:focus-visible { outline: 3px solid rgba(30, 215, 96, .45); outline-offset: 4px; }
+.play-button { width: 100%; max-width: 110px; min-width: 0; min-height: 48px; display: grid; place-items: center; justify-self: end; padding: 8px 18px; border: 2px solid #bdbdbd; border-radius: 11px; background: #fff; color: #0b0b0b; font-size: 22px; font-weight: 700; transition: background 160ms ease, border-color 160ms ease; }
+.service-card:hover .play-button { border-color: var(--spotify); background: #f3fff7; }
+footer a:focus-visible { outline: 3px solid rgba(30, 215, 96, .45); outline-offset: 4px; }
 
 footer { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 10px; padding-top: 40px; color: #777; font-size: 15px; }
 footer a { color: inherit; text-decoration: none; }
@@ -117,7 +124,7 @@ footer a { color: inherit; text-decoration: none; }
   .release-content { max-width: 680px; margin: 0 auto; }
   .release-heading { text-align: center; }
   .service-card { grid-template-columns: minmax(0, 1fr) minmax(112px, 40%); min-height: 164px; margin-top: 46px; padding: 28px 32px; border-radius: 28px; }
-  .service-card button { max-width: 190px; min-height: 72px; padding: 16px 42px; border-radius: 14px; font-size: 25px; }
+  .play-button { max-width: 190px; min-height: 72px; padding: 16px 42px; border-radius: 14px; font-size: 25px; }
   footer { margin-top: 54px; }
 }
 
@@ -129,8 +136,8 @@ footer a { color: inherit; text-decoration: none; }
   .service-card { min-height: 126px; margin-top: 42px; padding: 22px 20px; border-radius: 24px; gap: 14px; }
   .spotify-brand { gap: 7px; font-size: 21px; }
   .spotify-icon { width: 37px; height: 37px; flex-basis: 37px; }
-  .service-card button { max-width: 132px; min-height: 64px; padding: 14px 25px; font-size: 22px; }
+  .play-button { max-width: 132px; min-height: 64px; padding: 14px 25px; font-size: 22px; }
   footer { font-size: 13px; }
 }
 
-@media (prefers-reduced-motion: reduce) { .service-card button { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .service-card, .play-button { transition: none; } }
