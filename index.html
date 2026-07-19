@@ -33,6 +33,20 @@
       );
       fbq("init", "455232113193774");
       fbq("track", "PageView");
+
+      document.addEventListener(
+        "click",
+        function (event) {
+          var target = event.target;
+          if (target instanceof Element && target.closest(".service-card")) {
+            fbq("track", "Lead", {
+              content_name: "Spotify Play",
+              destination: "Spotify",
+            });
+          }
+        },
+        true
+      );
     </script>
     <!-- End Meta Pixel Code -->
   </head>

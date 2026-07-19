@@ -8,13 +8,6 @@ declare global {
 }
 
 export default function App() {
-  const openSpotify = () => {
-    window.fbq?.("track", "Lead", {
-      content_name: "Spotify Play",
-      destination: "Spotify",
-    });
-  };
-
   return (
     <main className="release-page">
       <section className="art-panel" aria-label="Обложка релиза">
@@ -31,7 +24,6 @@ export default function App() {
           <a
             className="service-card"
             href={SPOTIFY_URL}
-            onClick={openSpotify}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Слушать Your Love Was A Light в Spotify"
