@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const META_PIXEL_ID = "YOUR_META_PIXEL_ID";
+const META_PIXEL_ID = "455232113193774";
 const SPOTIFY_URL =
   "https://open.spotify.com/playlist/7fsg3M9SrKGcuVp4uwmfNX?si=23c26d2aba7543ae";
 
@@ -20,7 +20,7 @@ interface MetaPixelFunction {
 }
 
 function initialiseMetaPixel() {
-  if (!META_PIXEL_ID || META_PIXEL_ID === "YOUR_META_PIXEL_ID" || window.fbq) return;
+  if (window.fbq) return;
 
   const fbq = function (...args: unknown[]) {
     fbq.queue.push(args);
