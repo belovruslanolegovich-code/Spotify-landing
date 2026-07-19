@@ -137,6 +137,7 @@ a {
 }
 
 .service-card button {
+  flex: 0 1 190px;
   min-width: 190px;
   min-height: 72px;
   padding: 16px 42px;
@@ -179,6 +180,60 @@ footer {
 footer a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Compact desktop windows and laptops: keep the two-column composition
+   without letting the service button escape its card. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .release-page {
+    grid-template-columns: minmax(0, 1.45fr) minmax(380px, 1fr);
+  }
+
+  .art-panel {
+    padding: clamp(38px, 6vw, 72px);
+  }
+
+  .info-panel {
+    padding: 38px 24px 24px;
+  }
+
+  .release-heading h1 {
+    font-size: 28px;
+  }
+
+  .release-heading p {
+    font-size: 25px;
+  }
+
+  .service-card {
+    min-height: 138px;
+    margin-top: 40px;
+    gap: 12px;
+    padding: 22px 20px;
+    border-radius: 24px;
+  }
+
+  .spotify-brand {
+    min-width: 0;
+    gap: 7px;
+    font-size: 19px;
+  }
+
+  .spotify-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    padding: 8px 7px;
+    gap: 3px;
+  }
+
+  .service-card button {
+    flex-basis: 124px;
+    min-width: 118px;
+    min-height: 64px;
+    padding: 14px 22px;
+    font-size: 22px;
+  }
 }
 
 @media (max-width: 900px) {
