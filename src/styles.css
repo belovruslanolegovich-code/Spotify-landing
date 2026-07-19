@@ -23,19 +23,42 @@ button, a { font: inherit; }
 }
 
 .art-panel {
+  position: relative;
+  isolation: isolate;
   min-height: 100svh;
   display: grid;
   place-items: center;
   padding: clamp(48px, 9vw, 150px);
-  background: radial-gradient(circle at 46% 28%, rgba(179, 221, 203, .72) 0 13%, transparent 39%), linear-gradient(180deg, #91baa9 0%, #52604f 41%, #321c1e 72%, #12080b 100%);
+  overflow: hidden;
+  background: #24301d;
+}
+
+.art-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -55px;
+  background: url("/cover.png") center / cover no-repeat;
+  filter: blur(38px) saturate(.9);
+  transform: scale(1.08);
+}
+
+.art-panel::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgba(12, 10, 8, .2);
 }
 
 .cover-art {
+  position: relative;
+  z-index: 1;
   width: min(100%, 760px);
   aspect-ratio: 1;
   border-radius: 7px;
   background: url("/cover.png") center / cover no-repeat;
-  box-shadow: 0 35px 80px rgba(10, 5, 7, .28), 0 4px 0 #fff;
+  box-shadow: 0 35px 80px rgba(10, 5, 7, .32);
 }
 
 .info-panel {
