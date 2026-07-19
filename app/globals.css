@@ -86,13 +86,13 @@ a {
 
 .service-card {
   margin-top: clamp(34px, 4vw, 64px);
-  min-height: 164px;
+  min-height: 100px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(110px, 40%);
   align-items: center;
   gap: 24px;
-  padding: 28px 32px;
-  border-radius: 28px;
+  padding: 14px 18px;
+  border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 7px 23px rgba(0, 0, 0, 0.15);
 }
@@ -128,17 +128,17 @@ a {
 
 .service-card button {
   width: 100%;
-  max-width: 190px;
+  max-width: 110px;
   min-width: 0;
   justify-self: end;
-  min-height: 72px;
-  padding: 16px 42px;
+  min-height: 48px;
+  padding: 8px 18px;
   border: 2px solid #bdbdbd;
-  border-radius: 14px;
+  border-radius: 11px;
   background: #fff;
   color: #0b0b0b;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 700;
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
@@ -199,11 +199,11 @@ footer a {
 
   .service-card {
     grid-template-columns: minmax(0, 1fr) minmax(110px, 42%);
-    min-height: 138px;
+    min-height: 100px;
     margin-top: 40px;
     gap: 12px;
-    padding: 22px 20px;
-    border-radius: 24px;
+    padding: 14px 18px;
+    border-radius: 22px;
   }
 
   .spotify-brand {
@@ -219,9 +219,9 @@ footer a {
   }
 
   .service-card button {
-    max-width: 124px;
-    min-height: 64px;
-    padding: 14px 22px;
+    max-width: 110px;
+    min-height: 48px;
+    padding: 8px 18px;
     font-size: 22px;
   }
 }
@@ -260,7 +260,18 @@ footer a {
 
   .service-card {
     grid-template-columns: minmax(0, 1fr) minmax(112px, 40%);
+    min-height: 164px;
     margin-top: 46px;
+    padding: 28px 32px;
+    border-radius: 28px;
+  }
+
+  .service-card button {
+    max-width: 190px;
+    min-height: 72px;
+    padding: 16px 42px;
+    border-radius: 14px;
+    font-size: 25px;
   }
 
   footer {
