@@ -1,60 +1,15 @@
-import { useEffect, type MouseEvent } from "react";
+import { type MouseEvent } from "react";
 
-const META_PIXEL_ID = "455232113193774";
 const SPOTIFY_URL =
   "https://open.spotify.com/playlist/7fsg3M9SrKGcuVp4uwmfNX?si=23c26d2aba7543ae";
 
 declare global {
   interface Window {
-    fbq?: MetaPixelFunction;
-    _fbq?: unknown;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
-interface MetaPixelFunction {
-  (...args: unknown[]): void;
-  callMethod?: (...args: unknown[]) => void;
-  queue: unknown[][];
-  push: MetaPixelFunction;
-  loaded: boolean;
-  version: string;
-}
-
-function initialiseMetaPixel() {
-  if (window.fbq) return;
-
-  const fbq = function (...args: unknown[]) {
-    if (fbq.callMethod) {
-      fbq.callMethod(...args);
-    } else {
-      fbq.queue.push(args);
-    }
-  } as MetaPixelFunction;
-
-  Object.assign(fbq, {
-    push: fbq,
-    loaded: true,
-    version: "2.0",
-    queue: [],
-  });
-
-  window.fbq = fbq;
-  window._fbq = fbq;
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://connect.facebook.net/en_US/fbevents.js";
-  document.head.appendChild(script);
-
-  fbq("init", META_PIXEL_ID);
-  fbq("track", "PageView");
-}
-
 export default function App() {
-  useEffect(() => {
-    initialiseMetaPixel();
-  }, []);
-
   const openSpotify = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.fbq?.("track", "Lead", {
