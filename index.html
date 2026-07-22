@@ -39,7 +39,7 @@
         function (event) {
           var target = event.target;
           if (target instanceof Element && target.closest(".service-card")) {
-            fbq("track", "Lead", {
+            fbq("trackCustom", "spotify-click", {
               content_name: "Spotify Play",
               destination: "Spotify",
             });
